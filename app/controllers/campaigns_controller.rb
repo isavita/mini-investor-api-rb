@@ -1,5 +1,6 @@
-class CampaignsController < ApplicationController
+# frozen_string_literal: true
 
+class CampaignsController < ApplicationController
   def index
     campaigns = Campaign.order(:id).page(page).per(page_size)
 
@@ -24,7 +25,7 @@ class CampaignsController < ApplicationController
 
   def extended_json(campaigns)
     campaigns_json = CampaignSerializer.render_as_json(campaigns)
-    {'data' => { 'campaigns' => campaigns_json }, 'meta' => pagination_info(campaigns) }
+    { 'data' => { 'campaigns' => campaigns_json }, 'meta' => pagination_info(campaigns) }
   end
 
   def pagination_info(campaigns)
@@ -35,5 +36,4 @@ class CampaignsController < ApplicationController
       'totalPages' => campaigns.total_pages
     }
   end
-
 end

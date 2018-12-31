@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe InvestmentsController, type: :controller do
@@ -11,7 +13,7 @@ RSpec.describe InvestmentsController, type: :controller do
       hash_body = JSON.parse(response.body)
 
       expect(response).to have_http_status(:created)
-      expect(hash_body).to include({ 'amount' => params[:amount], 'campaignId' => campaign.id })
+      expect(hash_body).to include('amount' => params[:amount], 'campaignId' => campaign.id)
     end
   end
 end

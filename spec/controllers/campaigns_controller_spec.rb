@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe CampaignsController, type: :controller do
@@ -13,8 +15,8 @@ RSpec.describe CampaignsController, type: :controller do
 
   before { campaign }
 
-  describe "GET #index" do
-    it "returns a success response with correct entries" do
+  describe 'GET #index' do
+    it 'returns a success response with correct entries' do
       get :index, params: {}
 
       hash_body = JSON.parse(response.body)
@@ -24,15 +26,15 @@ RSpec.describe CampaignsController, type: :controller do
     end
 
     context 'with `page` and `pageSize` params' do
-      let!(:another_campaign) { Campaign.create!(campaign_attributes.merge({name: 'Company 2'})) }
+      let!(:another_campaign) { Campaign.create!(campaign_attributes.merge(name: 'Company 2')) }
 
-      it "returns a success response with correct entries" do
+      it 'returns a success response with correct entries' do
         get :index, params: { page: 2, pageSize: 1 }
 
         hash_body = JSON.parse(response.body)
 
         expect(response).to be_successful
-        expect(hash_body).to match({
+        expect(hash_body).to match(
           'data' => {
             'campaigns' => [{
               'id' => another_campaign.id,
@@ -51,19 +53,19 @@ RSpec.describe CampaignsController, type: :controller do
             'totalPages' => 2,
             'totalEntries' => 2
           }
-        })
+        )
       end
     end
   end
 
-  describe "GET #show" do
-    it "returns a success response" do
+  describe 'GET #show' do
+    it 'returns a success response' do
       get :show, params: { id: campaign.id }
 
       hash_body = JSON.parse(response.body)
 
       expect(response).to be_successful
-      expect(hash_body).to match({
+      expect(hash_body).to match(
         'id' => campaign.id,
         'name' => campaign.name,
         'targetAmount' => campaign.target_amount_pennies,
@@ -71,8 +73,8 @@ RSpec.describe CampaignsController, type: :controller do
         'multiplierAmount' => campaign.multiplier_amount_pennies,
         'raisedPercentage' => '10.0',
         'sector' => campaign.sector,
-        'countryName' => campaign.country_name,
-      })
+        'countryName' => campaign.country_name
+      )
     end
   end
 end

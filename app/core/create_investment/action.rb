@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module CreateInvestment
   class Action
-
     def initialize(campaign_id:, amount:)
       @campaign_id = campaign_id
       @amount = amount
@@ -35,6 +36,5 @@ module CreateInvestment
     def attributes
       { campaign: campaign, amount_pennies: amount }
     end
-
   end
 end
