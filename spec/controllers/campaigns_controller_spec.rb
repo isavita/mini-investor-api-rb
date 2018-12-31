@@ -39,6 +39,7 @@ RSpec.describe CampaignsController, type: :controller do
             'campaigns' => [{
               'id' => another_campaign.id,
               'name' => another_campaign.name,
+              'imageUrl' => another_campaign.image_url,
               'targetAmount' => another_campaign.target_amount_pennies,
               'raisedAmount' => another_campaign.raised_amount_pennies,
               'multiplierAmount' => another_campaign.multiplier_amount_pennies,
@@ -68,6 +69,7 @@ RSpec.describe CampaignsController, type: :controller do
       expect(hash_body).to match(
         'id' => campaign.id,
         'name' => campaign.name,
+        'imageUrl' => campaign.image_url,
         'targetAmount' => campaign.target_amount_pennies,
         'raisedAmount' => campaign.raised_amount_pennies,
         'multiplierAmount' => campaign.multiplier_amount_pennies,

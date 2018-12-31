@@ -6,6 +6,7 @@ class CampaignSerializer < Blueprinter::Base
   fields :name, :sector
 
   field :country_name, name: :countryName
+  field :image_url, name: :imageUrl
   field :target_amount_pennies, name: :targetAmount
   field :raised_amount_pennies, name: :raisedAmount
   field :multiplier_amount_pennies, name: :multiplierAmount
