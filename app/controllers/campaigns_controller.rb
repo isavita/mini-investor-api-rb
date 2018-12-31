@@ -24,7 +24,7 @@ class CampaignsController < ApplicationController
 
   def extended_json(campaigns)
     campaigns_json = CampaignSerializer.render_as_json(campaigns)
-    {'data' => campaigns_json, 'meta' => pagination_info(campaigns) }
+    {'data' => { 'campaigns' => campaigns_json }, 'meta' => pagination_info(campaigns) }
   end
 
   def pagination_info(campaigns)

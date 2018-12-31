@@ -20,7 +20,7 @@ RSpec.describe CampaignsController, type: :controller do
       hash_body = JSON.parse(response.body)
 
       expect(response).to be_successful
-      expect(hash_body['data'].size).to be_eql(1)
+      expect(hash_body['data']['campaigns'].size).to be_eql(1)
     end
 
     context 'with `page` and `pageSize` params' do
@@ -33,16 +33,18 @@ RSpec.describe CampaignsController, type: :controller do
 
         expect(response).to be_successful
         expect(hash_body).to match({
-          'data' => [{
-          'id' => another_campaign.id,
-          'name' => another_campaign.name,
-          'targetAmount' => another_campaign.target_amount_pennies,
-          'raisedAmount' => another_campaign.raised_amount_pennies,
-          'multiplierAmount' => another_campaign.multiplier_amount_pennies,
-          'raisedPercentage' => '10.0',
-          'sector' => another_campaign.sector,
-          'countryName' => another_campaign.country_name
-          }],
+          'data' => {
+            'campaigns' => [{
+              'id' => another_campaign.id,
+              'name' => another_campaign.name,
+              'targetAmount' => another_campaign.target_amount_pennies,
+              'raisedAmount' => another_campaign.raised_amount_pennies,
+              'multiplierAmount' => another_campaign.multiplier_amount_pennies,
+              'raisedPercentage' => '10.0',
+              'sector' => another_campaign.sector,
+              'countryName' => another_campaign.country_name
+            }]
+          },
           'meta' => {
             'page' => 2,
             'pageSize' => 1,
