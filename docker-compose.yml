@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  api:
+    build: .
+    command: bundle exec rails server
+    environment:
+      RAILS_ENV: "development"
+      PGHOST: "db"
+      PGUSER: "postgres"
+      PGDBNAME: "mini_investor_api_rb"
+      PGPORT: "5432"
+    volumes:
+      - .:/app
+    ports:
+      - "4000:3000"
+    depends_on:
+      - db
+  web:
+    image: baruh/mini-investor-ui
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+  db:
+    image: postgres:11.1-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
+
+volumes:
+  pgdata:

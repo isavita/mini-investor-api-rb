@@ -23,7 +23,10 @@ default: &default
 
 development:
   <<: *default
-  database: mini-investor-api-rb_development
+  database: <%= ENV.fetch("PGDBNAME") { 'mini-investor-api-rb_development' } %>
+  username: <%= ENV.fetch("PGUSER") { 'postgres' } %>
+  host: <%= ENV.fetch("PGHOST") { 'localhost' } %>
+  port: <%= ENV.fetch("PGPORT") { 5432 } %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
