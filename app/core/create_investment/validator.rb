@@ -20,7 +20,7 @@ module CreateInvestment
     attr_reader :amount_pennies, :multiplier
 
     def amount_multiple_of_multiplier?
-      amount_pennies % multiplier == 0
+      (amount_pennies % multiplier).zero?
     end
   end
 end

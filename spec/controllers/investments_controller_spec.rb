@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe InvestmentsController, type: :controller do
   describe 'POST #create' do
     let(:params) { { amount: 100, campaignId: campaign.id } }
-    let(:campaign) { Campaign.create!(name: 'Company 1', target_amount: 1000) }
+    let(:campaign) { create(:campaign) }
 
     it 'creates a new investment' do
       post :create, params: params, format: :json

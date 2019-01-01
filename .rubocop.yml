@@ -1,0 +1,16 @@
+AllCops:
+  Excludes:
+    - Rakefile
+    - Gemfile
+    - config.ru
+    - spec/rails_helper.rb
+    - db/**/*
+    - config/**/*
+    - script/**
+    - bin/**
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+Metrics/LineLength:
+  Max: 120
+Documentation:
+  Enabled: false

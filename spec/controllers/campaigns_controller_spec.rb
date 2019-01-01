@@ -3,15 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CampaignsController, type: :controller do
-  let(:campaign) { Campaign.create!(campaign_attributes) }
-  let(:campaign_attributes) do
-    {
-      name: 'Company 1',
-      target_amount_pennies: 100_000,
-      raised_amount_pennies: 10_000,
-      multiplier_amount_pennies: 100
-    }
-  end
+  let(:campaign) { create(:campaign, target_amount: 1_000, raised_amount: 100) }
 
   before { campaign }
 
@@ -26,7 +18,7 @@ RSpec.describe CampaignsController, type: :controller do
     end
 
     context 'with `page` and `pageSize` params' do
-      let!(:another_campaign) { Campaign.create!(campaign_attributes.merge(name: 'Company 2')) }
+      let!(:another_campaign) { create(:campaign, target_amount: 1_000, raised_amount: 200) }
 
       it 'returns a success response with correct entries' do
         get :index, params: { page: 2, pageSize: 1 }
@@ -43,7 +35,7 @@ RSpec.describe CampaignsController, type: :controller do
               'targetAmount' => another_campaign.target_amount_pennies,
               'raisedAmount' => another_campaign.raised_amount_pennies,
               'multiplierAmount' => another_campaign.multiplier_amount_pennies,
-              'raisedPercentage' => '10.0',
+              'raisedPercentage' => '20.0',
               'sector' => another_campaign.sector,
               'countryName' => another_campaign.country_name
             }]

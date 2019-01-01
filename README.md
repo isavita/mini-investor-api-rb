@@ -12,6 +12,7 @@
   * Install dependencies with `bundle install`
   * Create and migrate your database with `rails db:setup`
   * Start rails server on the correct port with `rails server -p 4000`
+  * Run all teast with `rspec`
 
 ### To start your web app
 
