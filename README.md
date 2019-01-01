@@ -45,7 +45,7 @@
     same time for the same campaign, but the second processed investment amount overwrites the first).
 
 ### Web client in Vue - more info [here](https://github.com/isavita/mini-investor-ui)
-### Alternative JSON API in Elixir ([here](https://github.com/isavita/mini-investor-ex))
+### Alternative JSON API in Elixir ([repository](https://github.com/isavita/mini-investor-api-ex))
 
 ## Design flaws/Missing elements
 
