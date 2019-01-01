@@ -1,0 +1,7 @@
+# General folders
+.git
+
+# Rails folders
+log
+tmp
+spec/tmp
