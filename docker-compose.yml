@@ -24,7 +24,7 @@ services:
     - '5431:5432'
 
   web:
-    image: baruh/mini-investor-ui
+    image: baruh/mini-investor-ui:v0.1
     ports:
     - '8080:80'
     depends_on:
