@@ -2,12 +2,14 @@
 
 module CreateInvestment
   class Action
-    def initialize(campaign_id:, amount:)
+    def initialize(campaign_id:, amount_pennies:)
       @campaign_id = campaign_id
-      @amount = amount
+      @amount_pennies = Integer(amount_pennies)
     end
 
     def call
+      validate!
+
       Investment.transaction do
         investment.save!
         update_campaign
@@ -18,7 +20,13 @@ module CreateInvestment
 
     private
 
-    attr_reader :campaign_id, :amount
+    attr_reader :campaign_id, :amount_pennies
+
+    def validate!
+      Validator.new(
+        amount_pennies: amount_pennies, multiplier: campaign.multiplier_amount_pennies
+      ).call
+    end
 
     def update_campaign
       campaign.raised_amount_pennies += investment.amount_pennies
@@ -34,7 +42,7 @@ module CreateInvestment
     end
 
     def attributes
-      { campaign: campaign, amount_pennies: amount }
+      { campaign: campaign, amount_pennies: amount_pennies }
     end
   end
 end
